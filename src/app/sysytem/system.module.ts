@@ -11,6 +11,9 @@ import { PlanningPageComponent } from './plannig-page/planning-page.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { BillCardComponent } from './bill-page/bill-card/bill-card.component';
+import { BillCurrencyComponent } from './bill-page/bill-currency/bill-currency.component';
+import { BillService } from './shared/services/bill.service';
 
 @NgModule({
 	imports: [
@@ -26,7 +29,12 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
 		SystemComponent,
 		SidebarComponent,
 		HeaderComponent,
-		DropdownDirective
+		DropdownDirective,
+		BillCardComponent,
+		BillCurrencyComponent
+	],
+	providers: [
+		BillService
 	]
 })
 export class SystemModule { }
