@@ -4,11 +4,4 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-sysytem',
   templateUrl: './system.component.html'
 })
-export class SystemComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class SystemComponent { }
