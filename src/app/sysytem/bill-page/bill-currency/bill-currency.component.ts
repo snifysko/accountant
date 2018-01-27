@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-bill-currency',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bill-currency.component.scss']
 })
 export class BillCurrencyComponent implements OnInit {
+	
+	@Input() currency: any; 
 
-  constructor() { }
+	currencyList: string[] = ['RUB', 'EUR', 'GBP']
 
-  ngOnInit() {
-  }
+  	constructor() { }
+
+	ngOnInit() {
+	}
 
 }

@@ -8,17 +8,17 @@ import { BaseApi } from '../../../shared/core/base-api';
 @Injectable()
 export class BillService extends BaseApi{
 
-constructor(public http: Http) { 
-	super(http);
-}
+	constructor(public http: Http) { 
+		super(http);
+	}
 
-GetBill(): Observable<Bill>{
-	return this.get('/bill');
-}
+	GetBill(): Observable<Bill>{
+		return this.get('/bill');
+	}
 
-GetCurrency(base: string = 'USD'): Observable<any>{
-	return this.http.get(`https://api.fixer.io/latest?base=${base}`)
-	.map( (response: Response) => response.json() );
-}
+	GetCurrency(base: string = 'USD'): Observable<any>{
+		return this.http.get(`https://api.fixer.io/latest?base=${base}`)
+		.map( (response: Response) => response.json() );
+	}
 
 }
