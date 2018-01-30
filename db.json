@@ -14,7 +14,7 @@
   "categories": [
     {
       "name": "Дом",
-      "capacity": 15000,
+      "capacity": 150001,
       "id": 1
     },
     {
@@ -26,6 +26,21 @@
       "id": 3,
       "name": "Машина",
       "capacity": 7000
+    },
+    {
+      "name": "sniffysko",
+      "capacity": 11,
+      "id": 4
+    },
+    {
+      "name": "qqqqqqqqqqqqqqq",
+      "capacity": 111,
+      "id": 5
+    },
+    {
+      "name": "wwww",
+      "capacity": 1,
+      "id": 6
     }
   ],
   "events": [
