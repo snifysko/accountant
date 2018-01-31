@@ -8,7 +8,7 @@
     }
   ],
   "bill": {
-    "value": 100000,
+    "value": 212010,
     "currency": "USD"
   },
   "categories": [
@@ -28,19 +28,24 @@
       "capacity": 7000
     },
     {
-      "name": "sniffysko",
-      "capacity": 11,
+      "name": "Развлечения",
+      "capacity": 1000,
       "id": 4
     },
     {
-      "name": "qqqqqqqqqqqqqqq",
-      "capacity": 111,
+      "name": "Спорт",
+      "capacity": 1000,
       "id": 5
     },
     {
-      "name": "wwww",
-      "capacity": 1,
+      "name": "Культура",
+      "capacity": 1000,
       "id": 6
+    },
+    {
+      "name": "Назва",
+      "capacity": 10,
+      "id": 7
     }
   ],
   "events": [
@@ -83,6 +88,30 @@
       "date": "10.06.2017 14:01:58",
       "id": 5,
       "description": "Заправка + проход ТО"
+    },
+    {
+      "type": "income",
+      "amount": 1000,
+      "category": "1",
+      "date": "01.02.2018 00:21:15",
+      "description": "Дом добавка",
+      "id": 6
+    },
+    {
+      "type": "income",
+      "amount": 10,
+      "category": "2",
+      "date": "01.02.2018 00:23:22",
+      "description": "Десять",
+      "id": 7
+    },
+    {
+      "type": "income",
+      "amount": 110000,
+      "category": "2",
+      "date": "01.02.2018 00:25:11",
+      "description": "Приход Еда",
+      "id": 8
     }
   ]
 }

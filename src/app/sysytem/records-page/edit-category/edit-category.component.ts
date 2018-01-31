@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { CategoryService } from '../../shared/services/category.service';
 import { Category } from '../../shared/models/category-model';
 import { Message } from '../../../shared/models/message.model';
@@ -9,7 +10,7 @@ import { Message } from '../../../shared/models/message.model';
   templateUrl: './edit-category.component.html',
   styleUrls: ['./edit-category.component.scss']
 })
-export class EditCategoryComponent implements OnInit {
+export class EditCategoryComponent implements OnInit, OnDestroy {
 	isLoaded = false;
 	msg: Message = new Message("", "success");
 
@@ -18,6 +19,7 @@ export class EditCategoryComponent implements OnInit {
 
 	private currId = 0;
 	private curCategory: Category = new Category("", 0, 0);
+	private submitSubs: Subscription;
 
 	constructor(
 		private categoryService: CategoryService
@@ -26,12 +28,16 @@ export class EditCategoryComponent implements OnInit {
 	ngOnInit() {
 	}
 
+	ngOnDestroy(){
+		if(this.submitSubs) this.submitSubs.unsubscribe();
+	}
+
 	OnSubmit(inputForm: NgForm){
 		let {name, capacity} = inputForm.value;
 		if(capacity < 0 ) capacity *= -1;
 		const cat = new Category(name, capacity, +this.currId);
 		
-		this.categoryService.UpdateCategory(cat)
+		this.submitSubs = this.categoryService.UpdateCategory(cat)
 			.subscribe( (category: Category) => {
 				this.onCategoryUpdated.emit(category);
 				this.msg = new Message("Изменения сохранены", "success");

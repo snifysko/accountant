@@ -11,7 +11,9 @@
 <section class="section" *ngIf="isLoaded">
 	<div class="row">
 		<div class="col-md-6">
-			<app-add-event></app-add-event>
+			<app-add-event
+				[categoryList]="categoryList"
+			></app-add-event>
 		</div>
 		<div class="col-md-6">
 			<app-add-category (onCategoryAdd)="NewCategoryAdded($event)"></app-add-category>
