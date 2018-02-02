@@ -8,7 +8,10 @@
 	<div *ngIf="isLoaded">
 		<app-history-chart [data]="chartData"></app-history-chart>
 
-		<app-history-event></app-history-event>
+		<app-history-event 
+			[events]="events" 
+			[categories]="categories"
+		></app-history-event>
 	
 		<app-history-filter></app-history-filter>
 	</div>

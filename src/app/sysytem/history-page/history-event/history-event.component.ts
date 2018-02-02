@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AppEvent } from '../../shared/models/app-event-model';
+import { Category } from '../../shared/models/category-model';
 
 @Component({
   selector: 'app-history-event',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryEventComponent implements OnInit {
 
-  constructor() { }
+	@Input() events: AppEvent[] = [];
+	@Input() categories: Category[] = [];
 
-  ngOnInit() {
-  }
+	constructor() { }
+
+	ngOnInit() {
+		this.events.forEach( e => {
+			e.catName = this.categories.find(c => c.id === e.category).name;
+		} );
+	}
+
+	GetClass(e: AppEvent){
+		return {
+			'label': true,
+			'label-danger': e.type === 'outcome',
+			'label-success': e.type === 'income'
+		}
+	}
+
+	GetLabelText(e: AppEvent): string{
+		return e.type === 'income' ? 'Приход' : 'Расход'
+	}
+
 
 }

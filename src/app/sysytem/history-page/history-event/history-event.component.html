@@ -37,28 +37,16 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>44 444</td>
-							<td>12.12.2017</td>
-							<td>Товары</td>
+						<tr *ngFor="let e of events; let ind = index">
+							<th scope="row">{{ ind + 1 }}</th>
+							<td>{{ e.amount }}</td>
+							<td>{{ e.date | momentdate }}</td>
+							<td>{{ e.catName }}</td>
 							<td>
-								<span class="label label-danger">Расход</span>
+								<span [ngClass]="GetClass(e)">{{ GetLabelText(e) }}</span>
 							</td>
 							<td class="text-lg-center">
-								<a href="#" class="btn btn-primary-outline">Открыть</a>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>33 333</td>
-							<td>12.12.2017</td>
-							<td>Отдых</td>
-							<td>
-								<span class="label label-success">Доход</span>
-							</td>
-							<td class="text-lg-center">
-								<a href="#" class="btn btn-primary-outline">Открыть</a>
+								<a [routerLink]="[ '/system/history', e.id ]" class="btn btn-primary-outline">Открыть</a>
 							</td>
 						</tr>
 						</tbody>
