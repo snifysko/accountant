@@ -8,13 +8,13 @@
     }
   ],
   "bill": {
-    "value": 212010,
+    "value": 107610,
     "currency": "USD"
   },
   "categories": [
     {
       "name": "Дом",
-      "capacity": 150001,
+      "capacity": 15000,
       "id": 1
     },
     {
@@ -23,9 +23,9 @@
       "id": 2
     },
     {
-      "id": 3,
       "name": "Машина",
-      "capacity": 7000
+      "capacity": 7000,
+      "id": 3
     },
     {
       "name": "Развлечения",
@@ -34,18 +34,13 @@
     },
     {
       "name": "Спорт",
-      "capacity": 1000,
+      "capacity": 4000,
       "id": 5
     },
     {
       "name": "Культура",
       "capacity": 1000,
       "id": 6
-    },
-    {
-      "name": "Назва",
-      "capacity": 10,
-      "id": 7
     }
   ],
   "events": [
@@ -60,7 +55,7 @@
     {
       "id": 2,
       "type": "outcome",
-      "amount": 1300,
+      "amount": 7000,
       "category": 1,
       "date": "13.06.2017 19:49:02",
       "description": "Купил посудомоечную машину"
@@ -83,7 +78,7 @@
     },
     {
       "type": "outcome",
-      "amount": 4000,
+      "amount": 6000,
       "category": 3,
       "date": "10.06.2017 14:01:58",
       "id": 5,
@@ -92,7 +87,7 @@
     {
       "type": "income",
       "amount": 1000,
-      "category": "1",
+      "category": 1,
       "date": "01.02.2018 00:21:15",
       "description": "Дом добавка",
       "id": 6
@@ -100,18 +95,26 @@
     {
       "type": "income",
       "amount": 10,
-      "category": "2",
+      "category": 2,
       "date": "01.02.2018 00:23:22",
       "description": "Десять",
       "id": 7
     },
     {
-      "type": "income",
-      "amount": 110000,
-      "category": "2",
-      "date": "01.02.2018 00:25:11",
-      "description": "Приход Еда",
+      "type": "outcome",
+      "amount": 1000,
+      "category": 6,
+      "date": "01.02.2018 21:26:59",
+      "description": "расход на культуру",
       "id": 8
+    },
+    {
+      "type": "outcome",
+      "amount": 1400,
+      "category": 5,
+      "date": "01.02.2018 21:40:38",
+      "description": "Прогулка за город",
+      "id": 9
     }
   ]
 }
