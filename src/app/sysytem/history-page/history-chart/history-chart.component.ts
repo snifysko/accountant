@@ -5,15 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './history-chart.component.html',
   styleUrls: ['./history-chart.component.scss']
 })
-export class HistoryChartComponent implements OnInit{
+export class HistoryChartComponent{
 
 	@Input() data;
 
 	constructor() {}
-
-	ngOnInit(){
-		console.log(this.data);
-		
-	}
-	
 }

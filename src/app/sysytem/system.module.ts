@@ -24,6 +24,7 @@ import { HistoryChartComponent } from './history-page/history-chart/history-char
 import { HistoryDetailComponent } from './history-page/history-detail/history-detail.component';
 import { HistoryEventComponent } from './history-page/history-event/history-event.component';
 import { HistoryFilterComponent } from './history-page/history-filter/history-filter.component';
+import { FilterEventsPipe } from './shared/pipes/filter-events.pipe';
 
 @NgModule({
 	imports: [
@@ -43,6 +44,7 @@ import { HistoryFilterComponent } from './history-page/history-filter/history-fi
 		BillCardComponent,
 		BillCurrencyComponent,
 		MomentPipe,
+		FilterEventsPipe,
 		AddCategoryComponent,
 		EditCategoryComponent,
 		AddEventComponent,

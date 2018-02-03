@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 import { HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[loginDropdown]'
+  selector: '[appDropdown]'
 })
 export class DropdownDirective {
 	constructor() { }
