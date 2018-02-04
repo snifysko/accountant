@@ -20,6 +20,12 @@ export class CategoryService extends BaseApi{
 		return this.get('/categories');
 	}
 
+	GetCategoryById(id: string | number): Observable<Category>{
+		let idStr: string;
+		if(typeof id === 'number') idStr = id.toString(); else idStr = id;
+		return this.get(`/categories/${id}`);
+	}
+
 	UpdateCategory(category: Category): Observable<Category>{
 		return this.put(`/categories/${category.id}`, category);
 	}

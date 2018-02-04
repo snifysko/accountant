@@ -18,6 +18,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 	events: AppEvent[] = [];
 	isLoaded: boolean = false;
 	chartData: any[];
+	isFilterVisible = false;
 
 	constructor(
 		private categoryServise: CategoryService,
@@ -51,4 +52,21 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 		if(this.subsCat) this.subsCat.unsubscribe();
 	}
 
+	private ToggleFilterVisible(){
+		this.isFilterVisible = !this.isFilterVisible;
+	}
+
+	OpenFilter(){
+		this.ToggleFilterVisible();
+	}
+
+	OnFilterApply(filterData){
+		//this.ToggleFilterVisible();
+		console.log(filterData);
+		
+	}
+
+	OnFilterCancel(){
+		this.ToggleFilterVisible();
+	}
 }
