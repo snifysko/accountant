@@ -6,6 +6,7 @@ import { CategoryService } from '../shared/services/category.service';
 import { EventService } from '../shared/services/event.service';
 import { Category } from '../shared/models/category-model';
 import { AppEvent } from '../shared/models/app-event-model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-history-page',
@@ -16,6 +17,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 	subsCat: Subscription;
 	categories: Category[] = [];
 	events: AppEvent[] = [];
+	filteredEvents: AppEvent[] = [];
 	isLoaded: boolean = false;
 	chartData: any[];
 	isFilterVisible = false;
@@ -32,20 +34,10 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 		).subscribe( (data: [ Category[], AppEvent[] ]) => {
 			this.categories = data[0];
 			this.events = data[1];
+			this.CloneOriginalEvents();
 			this.isLoaded = true;
 			this.CalcChartData();
 		} );
-	}
-
-	CalcChartData(): void{
-		this.chartData = [];
-		this.categories.forEach( (cat) => {
-			const catEvents = this.events.filter(e => e.category === cat.id && e.type === 'outcome');
-			this.chartData.push({
-				name: cat.name,
-				value: catEvents.reduce( (total, event) => total + event.amount, 0)
-			});
-		});
 	}
 
 	ngOnDestroy(){
@@ -54,19 +46,47 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
 	private ToggleFilterVisible(){
 		this.isFilterVisible = !this.isFilterVisible;
+	}	
+
+	CalcChartData(): void{
+		this.chartData = [];
+		this.categories.forEach( (cat) => {
+			const catEvents = this.filteredEvents.filter(e => e.category === cat.id && e.type === 'outcome');
+			this.chartData.push({
+				name: cat.name,
+				value: catEvents.reduce( (total, event) => total + event.amount, 0)
+			});
+		});
+	}
+
+	private CloneOriginalEvents(){
+		this.filteredEvents = this.events.slice();
 	}
 
 	OpenFilter(){
 		this.ToggleFilterVisible();
 	}
 
-	OnFilterApply(filterData){
-		//this.ToggleFilterVisible();
-		console.log(filterData);
-		
+	OnFilterApply(filters){
+		this.ToggleFilterVisible();
+		this.CloneOriginalEvents();
+
+		const startPeriod = moment().startOf(filters.period).startOf('d');
+		const endPeriod = moment().endOf(filters.period).endOf('d');		
+
+		if(filters.types.length !== 0 || filters.categories.length !== 0){
+			this.filteredEvents = this.filteredEvents.filter( (e) => {
+				console.log('filter>', filters);
+				return (filters.types.length === 0 || filters.types.indexOf(e.type) !== -1)
+					&& (filters.categories.length === 0 || filters.categories.indexOf(e.category.toString()) !== -1)
+					&& (filters.period === '' || moment(e.date, 'DD.MM.YYYY HH:mm:ss').isBetween(startPeriod, endPeriod))
+			});
+		}
+		this.CalcChartData();
 	}
 
 	OnFilterCancel(){
 		this.ToggleFilterVisible();
+		this.CloneOriginalEvents();
 	}
 }

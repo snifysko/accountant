@@ -7,15 +7,16 @@ import { Category } from '../../shared/models/category-model';
   styleUrls: ['./history-filter.component.scss']
 })
 export class HistoryFilterComponent{
-	@Input() isVivible;
+	@Input() isVivible: boolean = false;
 	@Input() categories: Category[] = [];
 	@Output() onFilterCancel = new EventEmitter<any>();
 	@Output() onFilterApply = new EventEmitter<any>();
 
-	selectPeriod = 'd';
-	selectedTypes = new Set<string>();
-	selectedCategories = new Set<string>();
+	selectPeriod = '';
+	selectedTypes: string[] = [];
+	selectedCategories: string[] = [];
 	timePeriods = [
+		{type: '', label: 'Все'},
 		{type: 'd', label: 'День'},
 		{type: 'w', label: 'Неделя'},
 		{type: 'M', label: 'Месяц'}
@@ -30,32 +31,32 @@ export class HistoryFilterComponent{
 
 	CloseFilter(){
 		this.selectPeriod = 'd';
-		this.selectedTypes = new Set<string>();
-		this.selectedCategories = new Set<string>();		
+		this.selectedTypes = [];
+		this.selectedCategories = [];		
 		this.onFilterCancel.emit();
 	}
 
 	ApplyFilter(){
 		this.onFilterApply.emit({
-			types: Array.from(this.selectedTypes),
-			categories: Array.from(this.selectedCategories),
+			types: this.selectedTypes,
+			categories:this.selectedCategories,
 			period: this.selectPeriod
 		});
 	}
 
-	UpdateDataSet(setName: Set<string>, checked: boolean, value: string): void{
+	UpdateDataSet(field: string, checked: boolean, value: string): void{
 		if(checked){
-			setName.add(value);
+			this[field].push(value);
 		}else{
-			setName.delete(value);
+			this[field] = this[field].filter( (i) => i !== value);
 		}
 	}
 
 	ChangeType(target){
-		this.UpdateDataSet(this.selectedTypes, target.checked, target.value);
+		this.UpdateDataSet('selectedTypes', target.checked, target.value);
 	}
 
 	ChangeCategory(target){
-		this.UpdateDataSet(this.selectedCategories, target.checked, target.value);
+		this.UpdateDataSet('selectedCategories', target.checked, target.value);
 	}
 }
