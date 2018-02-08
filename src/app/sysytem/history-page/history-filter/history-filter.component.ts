@@ -6,11 +6,12 @@ import { Category } from '../../shared/models/category-model';
   templateUrl: './history-filter.component.html',
   styleUrls: ['./history-filter.component.scss']
 })
-export class HistoryFilterComponent{
+export class HistoryFilterComponent implements OnInit{
 	@Input() isVivible: boolean = false;
 	@Input() categories: Category[] = [];
 	@Output() onFilterCancel = new EventEmitter<any>();
 	@Output() onFilterApply = new EventEmitter<any>();
+	@Output() onFilterClose = new EventEmitter<any>();
 
 	selectPeriod = '';
 	selectedTypes: string[] = [];
@@ -22,17 +23,27 @@ export class HistoryFilterComponent{
 		{type: 'M', label: 'Месяц'}
 	];
 	eventTypes = [
-		{value: "income", label: "Доход"},
-		{value: "outcome", label: "Расход"}
+		{value: "income", label: "Доход", selected: false},
+		{value: "outcome", label: "Расход", selected: false}
 	];
 
 	constructor() { 
 	}
 
+	ngOnInit(){
+		this.categories.map(i => i.selected = false);
+	}
+
 	CloseFilter(){
-		this.selectPeriod = 'd';
+		this.onFilterClose.emit();
+	}
+
+	CanselFilter(){
+		this.selectPeriod = '';
 		this.selectedTypes = [];
 		this.selectedCategories = [];		
+		this.eventTypes.map(i => i.selected = false);
+		this.categories.map(i => i.selected = false);
 		this.onFilterCancel.emit();
 	}
 

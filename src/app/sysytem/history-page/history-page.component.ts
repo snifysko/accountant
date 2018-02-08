@@ -76,7 +76,6 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
 		if(filters.types.length !== 0 || filters.categories.length !== 0){
 			this.filteredEvents = this.filteredEvents.filter( (e) => {
-				console.log('filter>', filters);
 				return (filters.types.length === 0 || filters.types.indexOf(e.type) !== -1)
 					&& (filters.categories.length === 0 || filters.categories.indexOf(e.category.toString()) !== -1)
 					&& (filters.period === '' || moment(e.date, 'DD.MM.YYYY HH:mm:ss').isBetween(startPeriod, endPeriod))
@@ -88,5 +87,10 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 	OnFilterCancel(){
 		this.ToggleFilterVisible();
 		this.CloneOriginalEvents();
+		this.CalcChartData();
+	}
+
+	OnFilterClose(){
+		this.ToggleFilterVisible();
 	}
 }

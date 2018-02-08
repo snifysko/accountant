@@ -23,6 +23,7 @@
 							class="checkbox"
 							type="checkbox"
 							[value]="t.value"
+							[(ngModel)]="t.selected"
 							(change)="ChangeType($event.target)"
 						>
 							<span>{{ t.label }}</span>
@@ -37,6 +38,7 @@
 							class="checkbox"
 							type="checkbox"
 							[value]="c.id"
+							[(ngModel)]="c.selected"
 							(change)="ChangeCategory($event.target)"
 						>
 						<span>{{ c.name }}</span>
@@ -44,8 +46,9 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" (click)="CloseFilter()">Отмена</button>
-				<button type="button" class="btn btn-primary" (click)="ApplyFilter()">Применить</button>
+				<button type="button" class="btn btn-secondary" (click)="CloseFilter()">Закрыть</button>
+				<button type="button" class="btn btn-danger" (click)="CanselFilter()">Отмена</button>
+				<button type="button" class="btn btn-success" (click)="ApplyFilter()">Применить</button>
 				</div>
 			</div>
 		</div>

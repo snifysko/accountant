@@ -12,10 +12,11 @@
 <div *ngIf="isLoaded">
 	<app-history-chart [data]="chartData"></app-history-chart>
 	<app-history-event [events]="filteredEvents" [categories]="categories"></app-history-event>
-	<app-history-filter 
+	<app-history-filter
 		[isVivible]="isFilterVisible"
 		[categories]="categories"
 		(onFilterApply)="OnFilterApply($event)"
 		(onFilterCancel)="OnFilterCancel()"
+		(onFilterClose)="OnFilterClose()"
 	></app-history-filter>
 </div>
