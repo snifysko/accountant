@@ -4,10 +4,10 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\auth\\login",
-    "\\src\\app\\sysytem",
-    "\\src\\app\\sysytem\\bill-page",
-    "\\src\\app\\sysytem\\bill-page\\bill-card"
+    "\\src\\app\\system",
+    "\\src\\app\\system\\bill-page",
+    "\\src\\app\\system\\bill-page\\bill-card"
   ],
-  "SelectedNode": "\\src\\app\\sysytem\\bill-page\\bill-card\\bill-card.component.ts",
+  "SelectedNode": "\\src\\app\\system\\bill-page\\bill-card\\bill-card.component.ts",
   "PreviewInSolutionExplorer": false
 }

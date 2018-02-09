@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sysytem',
+  selector: 'app-system',
   templateUrl: './system.component.html'
 })
 export class SystemComponent { }
